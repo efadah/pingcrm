@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use App\Account;
 use App\Contact;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
 class ContactsTest extends TestCase
 {
@@ -40,8 +40,8 @@ class ContactsTest extends TestCase
             ->assertPropCount('contacts.data', 5)
             ->assertPropValue('contacts.data', function ($contacts) {
                 $this->assertEquals(
-                    ['id', 'name', 'phone', 'city', 
-                    'deleted_at', 'organization'],
+                    ['id', 'name', 'phone', 'city',
+                    'deleted_at', 'organization', ],
                     array_keys($contacts[0])
                 );
             });
@@ -53,7 +53,7 @@ class ContactsTest extends TestCase
             factory(contact::class, 5)->make()
         )->first()->update([
             'first_name' => 'Greg',
-            'last_name' => 'Andersson'
+            'last_name' => 'Andersson',
         ]);
 
         $this->actingAs($this->user)
